@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalloStreaming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            margin: 20px 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .film {
+            width: 300px;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #333;
+        }
+
+        .film img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .film:hover img {
+            transform: scale(1.05);
+        }
+
+        .film h2 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .film p.description {
+            position: absolute;
+            bottom: 60px;
+            left: 10px;
+            right: 10px;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: left;
+            overflow: hidden;
+            height: auto;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .logo {
+            width: 150px;
+            margin: 0 auto;
+        }
+
+        /* Spinner style */
+        .spinner {
+            width: 80px;
+            height: 80px;
+            background-image: url('spinner-loader-aurora-edge-to-edge.71a83c4d733c2ee88bdd2976890223db.png');
+            background-size: cover;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="HalloStreaming Logo" class="logo">
+</header>
+
+<div class="container">
+    <!-- Film 1: Viking Wolf -->
+    <div class="film" onclick="playMovie('Film/viking-wolf.html', this)">
+        <img src="viking-wolf.jpg" alt="Viking Wolf">
+        <h2>Viking Wolf</h2>
+        <p class="description">Ce film norvégien suit une adolescente, Thale, qui devient témoin clé dans une enquête après qu'un étudiant ait été brutalement tué à une fête. Bientôt, elle se demande si le tueur est un simple animal ou quelque chose de plus sinistre, comme un loup-garou. Ce film mélange suspense, horreur et mythologie nordique pour un Halloween effrayant.</p>
+        <div class="overlay">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Film 2: La Proie d'une Ombre -->
+    <div class="film" onclick="playMovie('Film/la-proie-dune-ombre.html', this)">
+        <img src="la-proie-dune-ombre.jpg" alt="La Proie d'une Ombre">
+        <h2>La Proie d'une Ombre</h2>
+        <p class="description">Dans ce thriller psychologique, une jeune veuve, Beth, commence à être hantée par des cauchemars inquiétants dans la maison isolée que son mari défunt a construite. En cherchant à élucider les secrets qu'il a laissés derrière lui, elle découvre des révélations terrifiantes sur sa vie. Ce film propose une atmosphère tendue et des moments de frissons parfaits pour Halloween.</p>
+        <div class="overlay">
+            <div class="spinner"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function playMovie(pageUrl, filmElement) {
+        const overlay = filmElement.querySelector('.overlay');
+        
+        // Show the overlay with the spinner
+        overlay.classList.add('active');
+
+        // Simulate loading for 2 seconds
+        setTimeout(() => {
+            // Hide the overlay and redirect to the new page
+            overlay.classList.remove('active');
+            window.location.href = pageUrl; // Redirect to the page with the movie
+        }, 2000); // 2000 ms = 2 secondes
+    }
+</script>
+
+</body>
+</html>
